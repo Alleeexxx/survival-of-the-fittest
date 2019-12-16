@@ -1,42 +1,42 @@
-const textElement = document.getElementById('text')
-const optionButtonsElement = document.getElementById('option-buttons')
+const textElement = document.getElementById('text');
+const optionButtonsElement = document.getElementById('option-buttons');
 
-let state = {}
+let state = {};
 
 function startGame() {
-  state = {}
-  showTextNode(1)
+  state = {};
+  showTextNode(1);
 }
 
 function showTextNode(textNodeIndex) {
-  const textNode = textNodes.find(textNode => textNode.id === textNodeIndex)
-  textElement.innerText = textNode.text
+  const textNode = textNodes.find(textNode => textNode.id === textNodeIndex);
+  textElement.innerText = textNode.text;
   while (optionButtonsElement.firstChild) {
-    optionButtonsElement.removeChild(optionButtonsElement.firstChild)
+    optionButtonsElement.removeChild(optionButtonsElement.firstChild);
   }
 
   textNode.options.forEach(option => {
     if (showOption(option)) {
-      const button = document.createElement('button')
-      button.innerText = option.text
-      button.classList.add('btn')
-      button.addEventListener('click', () => selectOption(option))
-      optionButtonsElement.appendChild(button)
+      const button = document.createElement('button');
+      button.innerText = option.text;
+      button.classList.add('btn');
+      button.addEventListener('click', () => selectOption(option));
+      optionButtonsElement.appendChild(button);
     }
-  })
+  });
 }
 
 function showOption(option) {
-  return option.requiredState == null || option.requiredState(state)
+  return option.requiredState == null || option.requiredState(state);
 }
 
 function selectOption(option) {
-  const nextTextNodeId = option.nextText
+  const nextTextNodeId = option.nextText;
   if (nextTextNodeId <= 0) {
-    return startGame()
+    return startGame();
   }
-  state = Object.assign(state, option.setState)
-  showTextNode(nextTextNodeId)
+  state = Object.assign(state, option.setState);
+  showTextNode(nextTextNodeId);
 }
 
 const textNodes = [
@@ -57,17 +57,18 @@ const textNodes = [
   },
   {
     id: 2,
-    text: 'You venture forth in search of answers to where you are when you come across a merchant.',
+    text:
+      'You venture forth in search of answers to where you are when you come across a merchant.',
     options: [
       {
         text: 'Trade the goo for a sword',
-        requiredState: (currentState) => currentState.blueGoo,
+        requiredState: currentState => currentState.blueGoo,
         setState: { blueGoo: false, sword: true },
         nextText: 3
       },
       {
         text: 'Trade the goo for a shield',
-        requiredState: (currentState) => currentState.blueGoo,
+        requiredState: currentState => currentState.blueGoo,
         setState: { blueGoo: false, shield: true },
         nextText: 3
       },
@@ -79,7 +80,8 @@ const textNodes = [
   },
   {
     id: 3,
-    text: 'After leaving the merchant you start to feel tired and stumble upon a small town next to a dangerous looking castle.',
+    text:
+      'After leaving the merchant you start to feel tired and stumble upon a small town next to a dangerous looking castle.',
     options: [
       {
         text: 'Explore the castle',
@@ -97,7 +99,8 @@ const textNodes = [
   },
   {
     id: 4,
-    text: 'You are so tired that you fall asleep while exploring the castle and are killed by some terrible monster in your sleep.',
+    text:
+      'You are so tired that you fall asleep while exploring the castle and are killed by some terrible monster in your sleep.',
     options: [
       {
         text: 'Restart',
@@ -107,7 +110,8 @@ const textNodes = [
   },
   {
     id: 5,
-    text: 'Without any money to buy a room you break into the nearest inn and fall asleep. After a few hours of sleep the owner of the inn finds you and has the town guard lock you in a cell.',
+    text:
+      'Without any money to buy a room you break into the nearest inn and fall asleep. After a few hours of sleep the owner of the inn finds you and has the town guard lock you in a cell.',
     options: [
       {
         text: 'Restart',
@@ -135,17 +139,17 @@ const textNodes = [
       },
       {
         text: 'Attack it with your sword',
-        requiredState: (currentState) => currentState.sword,
+        requiredState: currentState => currentState.sword,
         nextText: 9
       },
       {
         text: 'Hide behind your shield',
-        requiredState: (currentState) => currentState.shield,
+        requiredState: currentState => currentState.shield,
         nextText: 10
       },
       {
         text: 'Throw the blue goo at it',
-        requiredState: (currentState) => currentState.blueGoo,
+        requiredState: currentState => currentState.blueGoo,
         nextText: 11
       }
     ]
@@ -182,7 +186,8 @@ const textNodes = [
   },
   {
     id: 11,
-    text: 'You threw your jar of goo at the monster and it exploded. After the dust settled you saw the monster was destroyed. Seeing your victory you decide to claim this castle as your and live out the rest of your days there.',
+    text:
+      'You threw your jar of goo at the monster and it exploded. After the dust settled you saw the monster was destroyed. Seeing your victory you decide to claim this castle as your and live out the rest of your days there.',
     options: [
       {
         text: 'Congratulations. Play Again.',
@@ -190,40 +195,34 @@ const textNodes = [
       }
     ]
   }
-]
+];
 
-startGame()
+startGame();
 
-
-
-
-var modal = document.getElementById("myModal");
+var modal = document.getElementById('myModal');
 
 // Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+var btn = document.getElementById('myBtn');
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+var span = document.getElementsByClassName('close')[0];
 
-// When the user clicks the button, open the modal 
+// When the user clicks the button, open the modal
 btn.onclick = function() {
-  modal.style.display = "block";
-}
+  modal.style.display = 'block';
+};
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
-  modal.style.display = "none";
-}
+  modal.style.display = 'none';
+};
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
-    modal.style.display = "none";
+    modal.style.display = 'none';
   }
-}
+};
 
-
-
-
-// ljud, spooky sound, high score kopplat till progress. 
-// eventuella bilder. 
+// ljud, spooky sound, high score kopplat till progress.
+// eventuella bilder.
