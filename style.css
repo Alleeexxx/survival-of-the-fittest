@@ -19,37 +19,43 @@ body {
   line-height: 100px;
   text-transform: uppercase;
   color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .audio {
   display: none;
 }
 
-span.letter {
-  color: red;
-}
-
 .header h1 {
-  float: left;
   font-weight: bold;
   padding-left: 15px;
-  font-size: 20px;
-  font-family: 'Courier New', Courier, monospace;
+  font-size: 30px;
+  font-family: 'Creepster', Helvetica, sans-serif;
+}
+
+.header h1 span {
+  color: rgba(235, 21, 18, 1);
+  font-size: 40px;
 }
 
 #myBtn {
   outline: none;
-  background-color: red;
+  background-color: rgba(235, 21, 18, 0.8);
   border: none;
   color: black;
-  padding: 10px 10px;
+  padding: 10px 20px;
   text-align: center;
-  float: right;
-  margin-top: 40px;
   margin-right: 40px;
-  border-radius: 12px;
-  font-family: 'Courier New', Courier, monospace;
+  border-radius: 4px;
+  font-size: 15px;
+  font-family: 'Fjalla One', Helvetica, sans-serif;
   text-transform: uppercase;
+}
+
+#myBtn:hover {
+  background-color: rgba(235, 21, 18, 1);
 }
 
 .container {
