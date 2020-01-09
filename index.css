@@ -5,19 +5,13 @@
 
 body {
   background-color: black;
+  height: 100vh;
 }
 
 .header {
   background-color: black;
   width: 100%;
   text-align: center;
-}
-
-.header img {
-  display: block;
-  margin: auto;
-  width: 400px;
-  padding-top: 20px;
 }
 
 .header h1 {
@@ -35,14 +29,20 @@ body {
   font-weight: 900;
 }
 
-#start-game {
+#buttons {
   position: absolute;
-  left: 50%;
   top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+#buttons span {
   color: rgba(235, 21, 18, 0.5);
   border: 2px solid;
   padding: 25px 50px;
+  margin: 10px 0;
   font-size: 40px;
   text-transform: uppercase;
   font-family: 'Fjalla One', Helvetica, sans-serif;
@@ -52,8 +52,18 @@ body {
   border-radius: 4px;
 }
 
-#start-game:hover {
+#buttons span:hover {
   color: rgba(235, 21, 18, 1);
   text-shadow: 0 0 10px rgba(235, 21, 18, 1);
   box-shadow: 0 0 20px rgba(235, 21, 18, 1);
+}
+
+@media only screen and (min-width: 450px) {
+  #buttons {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #buttons span {
+    margin: 0 20px;
+  }
 }
