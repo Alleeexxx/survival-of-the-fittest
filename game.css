@@ -76,7 +76,7 @@ audio {
 .container {
   width: 100%;
   max-width: 500px;
-  height: 300px;
+  min-height: 300px;
   background-color: rgba(0, 0, 0, 0.8);
   padding: 30px;
   border-radius: 5px;
@@ -104,6 +104,10 @@ audio {
   color: black;
   outline: none;
   font-weight: bold;
+  cursor: pointer;
+  font-family: 'Fjalla One', Helvetica, sans-serif;
+  letter-spacing: 2px;
+  font-size: 12px;
 }
 
 .btn:hover {
