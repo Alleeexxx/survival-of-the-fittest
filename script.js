@@ -1,5 +1,5 @@
-let rules;
 let rulesModal = false;
+
 $(document).ready(() => {
   $('#rules-container').load('rules.html');
   $('#rules').click(() => {
@@ -8,12 +8,18 @@ $(document).ready(() => {
   });
 
   $('#rules-container').ready(() => {
+    loadRules();
+
     $('#close').click(() => {
       closeRules();
     });
 
     $('#rules-container').click(e => {
-      if (!$(e.target).is('#rules-modal')) {
+      if (
+        !$(e.target).is('#rules-modal') &&
+        !$(e.target).is('#rules-modal h1') &&
+        !$(e.target).is('#rules-modal p')
+      ) {
         closeRules();
       }
     });
@@ -25,4 +31,15 @@ function closeRules() {
     rulesModal = false;
     $('#rules-container').hide();
   }
+}
+
+function loadRules() {
+  $.ajax({
+    url: 'rules.txt',
+    dataType: 'text',
+    success: res => {
+      let text = res.split('\n').join('<br>');
+      $('#rules-modal #text').html(text);
+    }
+  });
 }
