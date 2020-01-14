@@ -5,16 +5,16 @@ body {
   background-position: center;
 }
 
-/* audio player - hidden by default */
-audio {
-  display: none;
-}
-
-/* container for header and content */
+/* container for header and content - for positioning */
 #game-body {
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+/* audio player - hidden by default */
+audio {
+  display: none;
 }
 
 /* header */
@@ -43,8 +43,8 @@ audio {
   font-size: 40px;
 }
 
-/* rules button */
-#rules {
+/* rules and highscore button */
+.header button {
   outline: none;
   background-color: rgba(235, 21, 18, 0.8);
   border: none;
@@ -59,7 +59,7 @@ audio {
   cursor: pointer;
 }
 
-#rules:hover {
+.header button:hover {
   background-color: rgba(235, 21, 18, 1);
 }
 
@@ -95,6 +95,7 @@ audio {
   margin-top: 20px;
 }
 
+/* game option buttons */
 .btn {
   opacity: 0.7;
   background-color: red;

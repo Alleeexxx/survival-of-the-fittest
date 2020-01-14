@@ -4,15 +4,22 @@
     <title>SurvivalOfTheFittest</title>
   </head>
   <body>
+    <!-- heartbeat audio -->
     <audio src="heartbeat.ogg" type="audio/ogg" controls autoplay></audio>
     <div id="game-body">
+      <!-- header -->
       <div class="header">
         <h1>Survival<span class="letter">Of</span>The...Fittest</h1>
+        <!-- rules modal button -->
         <button id="rules">Rules</button>
+        <button id="highscore">Highscore</button>
       </div>
+      <!-- game content -->
       <div class="content">
         <div class="container">
+          <!-- game text - changed during the game -->
           <div id="text">Text</div>
+          <!-- game option buttons - changes during the game -->
           <div id="option-buttons" class="btn-grid">
             <button class="btn">Option 1</button>
             <button class="btn">Option 2</button>
@@ -21,16 +28,23 @@
         </div>
       </div>
     </div>
-
+    <!-- game over modal -->
+    <div id="game-over"></div>
+    <!-- rules container - load from rules.html -->
     <div id="rules-container"></div>
+    <!-- global stylesheet -->
     <link rel="stylesheet" type="text/css" href="styles.css" />
+    <!-- local stylesheet -->
     <link rel="stylesheet" type="text/css" href="game.css" />
+    <!-- fonts -->
     <link
       href="https://fonts.googleapis.com/css?family=Creepster|Fjalla+One|Cookie&display=swap"
       rel="stylesheet"
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- global script -->
     <script type="text/javascript" src="script.js"></script>
+    <!-- local script -->
     <script type="text/javascript" src="game.js"></script>
   </body>
 </html>
