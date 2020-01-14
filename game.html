@@ -4,8 +4,7 @@
     <title>SurvivalOfTheFittest</title>
   </head>
   <body>
-    <!-- heartbeat audio -->
-    <audio src="heartbeat.ogg" type="audio/ogg" controls autoplay></audio>
+    <audio src="heartbeat.ogg" type="audio/ogg" controls loop id="audio"></audio>
     <div id="game-body">
       <!-- header -->
       <div class="header">
@@ -17,9 +16,8 @@
       <!-- game content -->
       <div class="content">
         <div class="container">
-          <!-- game text - changed during the game -->
-          <div id="text">Text</div>
-          <!-- game option buttons - changes during the game -->
+          <div id="game-text">Text</div>
+
           <div id="option-buttons" class="btn-grid">
             <button class="btn">Option 1</button>
             <button class="btn">Option 2</button>
