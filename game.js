@@ -3,10 +3,55 @@ const optionButtonsElement = document.getElementById('option-buttons');
 const audio = document.getElementById('audio');
 
 let state = {};
+let highscores = new Array();
+let score = 0;
 
 $(document).ready(() => {
+  let valid = false;
+  $('#user-input').keyup(() => {
+    let res = validate($('#name-input input').val());
+    if (res) {
+      $('#name-input button').removeAttr('disabled');
+      $('#name-input #error').css('display', 'none');
+      valid = true;
+    } else {
+      $('#name-input button').prop('disabled', 'true');
+      $('#name-input #error').css('display', 'block');
+      valid = false;
+    }
+  });
+
+  $('#name-input button').click(() => {
+    if (valid) {
+      addHighscore($('#name-input input').val(), 50);
+      console.log('hej');
+    }
+  });
+
+  $('#restart').click(() => {
+    restart();
+  });
+
   startGame();
   audio.play();
+  getHighscore();
+  createHighscore();
+
+  $('.highscore').ready(() => {
+    $('#highscore-btn').click(() => {
+      $('.score-window').show();
+    });
+
+    $(document).click(e => {
+      if (
+        !$(e.target).is('.highscore') &&
+        !$(e.target).is('.highscore *') &&
+        !$(e.target).is('#game-over *')
+      ) {
+        $('.highscore').hide();
+      }
+    });
+  });
 });
 
 // start game function - shows the first step in the game
@@ -14,6 +59,90 @@ function startGame() {
   audio.playbackRate = 0.5;
   state = {};
   showTextNode(1);
+  score = 0;
+}
+
+function validate(str) {
+  let regex = /^[A-Za-z0-9]+$/;
+  return regex.test(str);
+}
+
+function addHighscore(name, score) {
+  if (highscores.length < 10 || highscores[9].score < score) {
+    let newScore = new Score(name, score);
+    highscores.push(newScore);
+    highscores.sort((a, b) => {
+      return b.score - a.score;
+    });
+    if (highscores.length > 10) {
+      highscores.pop();
+    }
+    saveHighscore();
+  }
+  createHighscore();
+  $('#game-over #name-input').hide();
+  $('#game-over #highscore').show();
+}
+
+function saveHighscore() {
+  let newhighscores = JSON.stringify(highscores);
+  localStorage.setItem('highscore', newhighscores);
+}
+
+function getHighscore() {
+  highscores = [];
+  if (localStorage.getItem('highscore')) {
+    let tmpHighscores = JSON.parse(localStorage.getItem('highscore'));
+    tmpHighscores.forEach((item, index) => {
+      let newScore = new Score(item.name, item.score);
+      highscores.push(newScore);
+    });
+  }
+}
+
+function gameOver() {
+  $('#game-over').show();
+  $('#game-over #name-input').show();
+  audio.pause();
+  // addHighscore('A', 1);
+  // addHighscore('B', 10);
+  // addHighscore('C', 5);
+  // addHighscore('D', 3);
+  // addHighscore('E', 4);
+  // addHighscore('F', 7);
+  // addHighscore('G', 9);
+  // addHighscore('H', 2);
+  // addHighscore('I', 6);
+  // addHighscore('J', 8);
+  // addHighscore('K', 11);
+}
+
+function createHighscore() {
+  $('#highscore div').html('');
+  highscores.forEach((item, index) => {
+    let nameEl = document.createElement('p');
+    nameEl.className = 'name';
+    nameEl.innerHTML = item.name;
+    let scoreEl = document.createElement('p');
+    scoreEl.className = 'score';
+    scoreEl.innerHTML = item.score;
+    $('#highscore div').append(nameEl);
+    $('#highscore div').append(scoreEl);
+  });
+}
+
+function restart() {
+  $('#game-over').hide();
+  $('#game-over #name-input').hide();
+  $('#game-over #highscore').hide();
+  startGame();
+}
+
+class Score {
+  constructor(name, score) {
+    this.name = name;
+    this.score = score;
+  }
 }
 
 // finds and displays the current step
@@ -48,6 +177,8 @@ function selectOption(option) {
   if (nextTextNodeId <= 0) {
     return startGame();
   }
+  // score += option.score;
+  score += 50;
   audio.playbackRate += 0.1;
   state = Object.assign(state, option.setState);
   showTextNode(nextTextNodeId);
@@ -58,11 +189,11 @@ const textNodes = [
     id: 1,
     text:
       'You are the renowned sheriff of Hutchinson, Kansas. It’s the year of 1951 and you are in charge of locating the missing daughter of Mayer. Roberts. This isn’t the only case of missing children, lately the past six months there have been four reporting of missing children and they all were last seen around the area of the closed asylum in the outskirts of town. \n WILL YOU INVESTIGATE THE ASYLUM?',
-
     options: [
       {
         text: 'Yes',
         setState: { blueGoo: true },
+        score: 50,
         nextText: 2
       }
     ]

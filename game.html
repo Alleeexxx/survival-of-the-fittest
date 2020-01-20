@@ -10,8 +10,10 @@
       <div class="header">
         <h1>Survival<span class="letter">Of</span>The...Fittest</h1>
         <!-- rules modal button -->
-        <button id="rules">Rules</button>
-        <button id="highscore">Highscore</button>
+        <div id="buttons">
+          <button id="rules-btn">Rules</button>
+          <button id="highscore-btn">Highscore</button>
+        </div>
       </div>
       <!-- game content -->
       <div class="content">
@@ -27,7 +29,25 @@
       </div>
     </div>
     <!-- game over modal -->
-    <div id="game-over"></div>
+    <div id="game-over">
+      <div id="inner">
+        <div id="highscore">
+          <h1>Highscore List</h1>
+          <div></div>
+        </div>
+        <div id="name-input">
+          <h1>Please enter a name for the highscore list</h1>
+          <input type="text" id="user-input" placeholder="Name" />
+          <p id="error">You can only enter valid characters (a-z & 0-9)</p>
+          <button>Submit</button>
+        </div>
+        <button id="restart">Restart</button>
+      </div>
+    </div>
+    <!-- <div class="highscore score-window">
+      <h1>Highscore List</h1>
+      <div></div>
+    </div> -->
     <!-- rules container - load from rules.html -->
     <div id="rules-container"></div>
     <!-- global stylesheet -->

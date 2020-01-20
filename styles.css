@@ -19,14 +19,14 @@
 #rules-modal {
   background-image: url(oldpaper.jpg);
   background-size: cover;
-  width: 40%;
-  height: 50%;
+  width: 80%;
+  max-width: 500px;
   min-height: 500px;
   color: black;
   position: relative;
-  top: 50%;
+  top: 10%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%);
 }
 
 #rules-modal #close {
@@ -51,9 +51,21 @@
 }
 
 #rules-modal #text {
-  font-size: 30px;
+  font-size: 25px;
   font-family: 'Cookie', Helvetica, sans-serif;
   display: block;
   width: 80%;
   margin: 0 10%;
+}
+
+@media only screen and (min-width: 500px) {
+  #rules-modal {
+    width: 60%;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  #rules-modal #text {
+    font-size: 30px;
+  }
 }
