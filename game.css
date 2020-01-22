@@ -1,8 +1,30 @@
 body {
-  background-image: url(backimage5.jpg);
+  background-image: url(asylum.jpg);
   background-size: cover;
   height: 100vh;
   background-position: center;
+  animation: background-animation 100s infinite;
+}
+
+@keyframes background-animation {
+  0% {
+    background-image: url(asylum.jpg);
+  }
+  25% {
+    background-image: url(shed.jpg);
+  }
+  30% {
+    background-image: url(image.jpg);
+  }
+  45% {
+    background-image: url(couryard.jpg);
+  }
+  80% {
+    background-image: url(backimage5.jpg);
+  }
+  100% {
+    background-image: url(hallway.jpg);
+  }
 }
 
 /* container for header and content - for positioning */
@@ -43,30 +65,62 @@ audio {
   font-size: 40px;
 }
 
+.header #menu-bar {
+  display: inline-block;
+  cursor: pointer;
+  margin-right: 20px;
+  padding: 0 6px;
+}
+
+.header #menu-bar div {
+  background-color: rgba(235, 21, 18, 1);
+  width: 35px;
+  height: 5px;
+  transition: 0.4s ease-in-out;
+  margin: 6px 0;
+}
+
+.header .menu-bar-active .first-bar {
+  transform: rotate(-135deg) translate(-8px, -8px) !important;
+}
+
+.header .menu-bar-active .second-bar {
+  opacity: 0 !important;
+}
+
+.header .menu-bar-active .third-bar {
+  transform: rotate(135deg) translate(-8px, 8px) !important;
+}
+
 .header #buttons {
-  display: flex;
+  width: 200px;
+  height: auto;
+  position: absolute;
+  top: 100px;
+  right: 0;
+  display: none;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  background-color: #000;
+  transition: 0.4s linear;
 }
 
 /* rules and highscore button */
 .header button {
   outline: none;
-  background-color: rgba(235, 21, 18, 0.8);
+  width: 100%;
+  color: rgba(235, 21, 18, 1);
+  background-color: #000;
   border: none;
-  color: black;
   padding: 10px 20px;
+  margin: 0;
+  box-sizing: border-box;
   text-align: center;
-  margin-right: 40px;
-  border-radius: 4px;
   font-size: 15px;
   font-family: 'Fjalla One', Helvetica, sans-serif;
   text-transform: uppercase;
   cursor: pointer;
-}
-
-.header button:hover {
-  background-color: rgba(235, 21, 18, 1);
 }
 
 /* content div for game
@@ -143,8 +197,8 @@ audio {
   padding: 50px;
 }
 
-/* Highscore */
-#highscore {
+/* Highscore list inside game over modal*/
+#game-over #highscore {
   width: 80%;
   margin: 0 auto 50px;
   display: none;
@@ -152,30 +206,30 @@ audio {
   text-align: center;
 }
 
-#highscore h1 {
+#game-over #highscore h1 {
   margin: 20px;
 }
 
-#highscore div {
+#game-over #highscore div {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   width: 80%;
   margin: 0 10%;
 }
 
-#highscore p {
+#game-over #highscore p {
   padding: 10px;
 }
 
-#highscore .name {
+#game-over #highscore .name {
   text-align: left;
 }
 
-#highscore .score {
+#game-over #highscore .score {
   text-align: right;
 }
 
-/* name input */
+/* name input inside game over modal*/
 #game-over #name-input {
   display: none;
   margin: 50px auto;
@@ -211,6 +265,7 @@ audio {
   padding: 5px 10px;
 }
 
+/* restart button */
 #game-over #restart {
   outline: none;
   background-color: rgba(235, 21, 18, 0.8);
@@ -227,6 +282,80 @@ audio {
   cursor: pointer;
 }
 
-.score-window {
-  width: auto;
+/* highscore list - highscore button */
+#highscore-modal {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+}
+
+#highscore-modal #content {
+  width: 80%;
+  max-width: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #000;
+  color: #fff;
+}
+
+#highscore-modal #content div {
+  padding: 50px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+#highscore-modal #content div p {
+  padding: 10px;
+}
+
+#highscore-modal #content div .name {
+  text-align: left;
+}
+
+#highscore-modal #content div .score {
+  text-align: right;
+}
+
+@media only screen and (min-width: 600px) {
+  .header #menu-bar {
+    display: none;
+  }
+
+  .header #buttons {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 20px;
+    position: unset;
+    background-color: transparent;
+  }
+
+  /* rules and highscore button */
+  .header button {
+    outline: none;
+    background-color: rgba(235, 21, 18, 0.8);
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    margin-left: 10px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-family: 'Fjalla One', Helvetica, sans-serif;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .header button:hover {
+    background-color: rgba(235, 21, 18, 1);
+  }
 }
